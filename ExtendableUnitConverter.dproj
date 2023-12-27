@@ -130,7 +130,9 @@
             <Form>FrmMain1</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="CustomSCFluentTopBar.pas"/>
+        <DCCReference Include="Converter.Types.Time.pas"/>
+        <DCCReference Include="Converter.Types.Generics.pas"/>
+        <DCCReference Include="Converter.Types.Generics.Interfaces.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -4,7 +4,9 @@ uses
   Vcl.Forms,
   Forms.Main in 'Forms.Main.pas' {FrmMain},
   TcstFluentTopBar in 'TcstFluentTopBar.pas' {FrmMain1},
-  CustomSCFluentTopBar in 'CustomSCFluentTopBar.pas';
+  Converter.Types.Time in 'Converter.Types.Time.pas',
+  Converter.Types.Generics in 'Converter.Types.Generics.pas',
+  Converter.Types.Generics.Interfaces in 'Converter.Types.Generics.Interfaces.pas';
 
 {$R *.res}
 
