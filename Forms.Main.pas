@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, scStyledForm, scGPControls, scControls,
-  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, Converter.Types.Time, Generics.Collections;
+  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, Converter.Types.Time, Converter.Types.Metric, Generics.Collections, Converter.Types.Generics, Converter.Interfaces.ConvertOption, Converter.Interfaces.CorrespondencyTable, Converter.Interfaces.Converter;
 
 type
   TFrmMain = class(TForm)
@@ -16,7 +16,6 @@ type
     lblProgramname: TscGPLabel;
     MainPager: TscPageControl;
     scTabTime: TscTabSheet;
-    scTabSpeed: TscTabSheet;
     scTabMetric: TscTabSheet;
     scTabExtended: TscTabSheet;
     scTimeFromValue: TscEdit;
@@ -28,33 +27,28 @@ type
     tscGpbxToTime: TscGroupBox;
     btnConvertMetric: TscButton;
     tscGpbxFromMetric: TscGroupBox;
-    scCbxFromOption: TscComboBox;
+    scCbxMetricFromOption: TscComboBox;
     scMetricFromValue: TscEdit;
     tscGpbxToMetric: TscGroupBox;
-    scCbxToOption: TscComboBox;
+    scCbxMetricToOption: TscComboBox;
     scMetricToValue: TscEdit;
     btnCustomConvert: TscButton;
     scGpbxFromCustom: TscGroupBox;
     scFromCustom: TscEdit;
     scGpbxToCustom: TscGroupBox;
     scToCustom: TscEdit;
-    btnConvertSpeed: TscButton;
-    tscGpbxFromSpeed: TscGroupBox;
-    scCbxSpeedFromOption: TscComboBox;
-    scSpeedFromValue: TscEdit;
-    tscGpbxToSpeed: TscGroupBox;
-    scCbxSpeedToOption: TscComboBox;
-    scSpeedToValue: TscEdit;
     scCbxCustomConvert: TComboBox;
     btnAddConverter: TscButton;
     procedure scbtnCloseClick(Sender: TObject);
     procedure scbtnMinimizeClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure btnConvertMetricClick(Sender: TObject);
     procedure scbtnConvertTimeClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
-    FConvertTimeDictionary: TDictionary<string, TTimeConvertOptions>;
+  
+    FMetricConverter: TConverter;
+    FTimeConverter: TConverter;
   public
     { Public declarations }
   end;
@@ -66,36 +60,48 @@ implementation
 
 {$R *.dfm}
 
-procedure TFrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TFrmMain.btnConvertMetricClick(Sender: TObject);
 begin
- if Assigned(FConvertTimeDictionary) then
- begin
-   FConvertTimeDictionary.Clear;
-   FConvertTimeDictionary.Free;
- end;
-
+  var FromValue: Double := StrToFloat(scMetricFromValue.Text);
+  var CorrespTable: TCorrespondencyTable := TCorrespondencyTable(scCbxMetricToOption.Items.Objects[scCbxMetricToOption.ItemIndex]); 
+  scMetricToValue.Text := FloatToStr(FMetricConverter.Convert(FromValue, scCbxMetricFromOption.Text, CorrespTable));
+  
 end;
 
 procedure TFrmMain.FormCreate(Sender: TObject);
 
-  procedure AddToComboTimeComboBox(ACaption: string; AOption: TTimeConvertOptions);
+  procedure AddToComboTimeComboBox(AName: string; AConvertOption: TCorrespondencyTable);
   begin
-    scCbxTimeFromOption.AddItem(ACaption, nil);
-    scCbxTimeToOption.AddItem(ACaption, nil);
-    FConvertTimeDictionary.Add(ACaption, AOption);
+    scCbxTimeFromOption.AddItem(AName, AConvertOption);
+    scCbxTimeToOption.AddItem(AName, AConvertOption);
+  end;
+
+  procedure AddToComboMetricComboBox(AName: string; AConvertOption: TCorrespondencyTable);
+  begin
+    scCbxMetricFromOption.AddItem(AName, AConvertOption);
+    scCbxMetricToOption.AddItem(AName, AConvertOption);
   end;
 var
-  Element: TTimeConvertOptions;
+  Key: string;
+  CurrentValue: TCorrespondencyTable;
 begin
-  FConvertTimeDictionary :=  TDictionary<string, TTimeConvertOptions>.Create;
-  for Element := Low(TTimeConvertOptions) to High(TTimeConvertOptions) do
-  case Element of
-    tcoSecond: AddToComboTimeComboBox('Second', tcoSecond);
-    tcoMinute: AddToComboTimeComboBox('Minute', tcoMinute);
-    tcoHour: AddToComboTimeComboBox('Hour', tcoHour);
-    tcoDay: AddToComboTimeComboBox('Day', tcoDay);
-    tcoMonth: AddToComboTimeComboBox('Month', tcoMonth);
-    tcoYear: AddToComboTimeComboBox('Year', tcoYear);
+  FMetricConverter := TMetricConverter.Create;
+  FTimeConverter := TTimeConverter.Create;
+  
+  for Key in FMetricConverter.Bases.Keys do
+  begin
+    if FMetricConverter.Bases.TryGetValue(Key, CurrentValue) then
+    begin
+      AddToComboMetricComboBox(Key, CurrentValue);
+    end
+  end;
+
+  for Key in FTimeConverter.Bases.Keys do
+  begin
+    if FTimeConverter.Bases.TryGetValue(Key, CurrentValue) then
+    begin
+      AddToComboTimeComboBox(Key, CurrentValue);
+    end
   end;
 
 end;
@@ -106,28 +112,10 @@ begin
 end;
 
 procedure TFrmMain.scbtnConvertTimeClick(Sender: TObject);
-  function TranslateCaption(ACaption: string): TTimeConvertOptions;
-  begin
-    var TryGetValueResult: TTimeConvertOptions;
-    if FConvertTimeDictionary.TryGetValue(ACaption, TryGetValueResult) then
-    begin
-      Result := TryGetValueResult;
-    end else
-    begin
-      raise Exception.Create('Error Translating the Caption');
-    end;
-  end;
-var
-  TimeConverter: TTimeConverter;
-  ConversionResult: Double;
 begin
-  TimeConverter := TTimeConverter.Create;
-  try
-    ConversionResult := TimeConverter.Convert(StrToFloat(scTimeFromValue.Text), TranslateCaption(scCbxTimeFromOption.Text), TranslateCaption(scCbxTimeToOption.Text));
-    scTimeToValue.Text := FloatToStr(ConversionResult);
-  finally
-    TimeConverter.Free;
-  end;
+  var FromValue: Double := StrToFloat(scTimeFromValue.Text);
+  var CorrespTable: TCorrespondencyTable := TCorrespondencyTable(scCbxTimeToOption.Items.Objects[scCbxTimeToOption.ItemIndex]); 
+  scTimeToValue.Text := FloatToStr(FTimeConverter.Convert(FromValue, scCbxTimeFromOption.Text, CorrespTable));
 end;
 
 procedure TFrmMain.scbtnMinimizeClick(Sender: TObject);

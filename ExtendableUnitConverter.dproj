@@ -126,13 +126,14 @@
             <Form>FrmMain</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="TcstFluentTopBar.pas">
-            <Form>FrmMain1</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="Converter.Types.Time.pas"/>
+        <DCCReference Include="Converter.Interfaces.Converter.pas"/>
         <DCCReference Include="Converter.Types.Generics.pas"/>
-        <DCCReference Include="Converter.Types.Generics.Interfaces.pas"/>
+        <DCCReference Include="Converter.Types.Time.Legacy.pas"/>
+        <DCCReference Include="Converter.Types.Speed.pas"/>
+        <DCCReference Include="Converter.Types.Metric.pas"/>
+        <DCCReference Include="Converter.Types.Time.pas"/>
+        <DCCReference Include="Converter.Interfaces.CorrespondencyTable.pas"/>
+        <DCCReference Include="Converte.Interfaces.ConvertOption.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

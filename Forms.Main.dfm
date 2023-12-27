@@ -12,7 +12,6 @@ object FrmMain: TFrmMain
   Font.Name = 'Segoe UI'
   Font.Style = []
   StyleElements = [seFont]
-  OnClose = FormClose
   OnCreate = FormCreate
   TextHeight = 15
   object scpnlTopBar: TscPanel
@@ -42,7 +41,6 @@ object FrmMain: TFrmMain
     Color = clBtnFace
     StorePaintBuffer = False
     WordWrap = False
-    ExplicitWidth = 640
     object scbtnClose: TscGPGlyphButton
       Left = 320
       Top = 0
@@ -158,7 +156,6 @@ object FrmMain: TFrmMain
       GroupIndex = 0
       AllowAllUp = False
       ToggleMode = False
-      ExplicitLeft = 590
     end
     object scbtnMinimize: TscGPGlyphButton
       Left = 270
@@ -275,7 +272,6 @@ object FrmMain: TFrmMain
       GroupIndex = 0
       AllowAllUp = False
       ToggleMode = False
-      ExplicitLeft = 540
     end
     object lblProgramname: TscGPLabel
       Left = 0
@@ -317,7 +313,6 @@ object FrmMain: TFrmMain
       GlowEffect.StyleColors = True
       AutoSize = True
       Caption = 'Unit Converter'
-      ExplicitLeft = 50
     end
   end
   object MainPager: TscPageControl
@@ -672,325 +667,8 @@ object FrmMain: TFrmMain
         end
       end
     end
-    object scTabSpeed: TscTabSheet
-      Caption = 'Speed'
-      StyleKind = sctsTabSheet
-      WallpaperIndex = -1
-      CustomBackgroundImageIndex = -1
-      DrawTabsWallpaper = False
-      object btnConvertSpeed: TscButton
-        Left = 128
-        Top = 119
-        Width = 100
-        Height = 35
-        FluentUIOpaque = False
-        TabOrder = 0
-        TabStop = True
-        Animation = False
-        Caption = 'Convert'
-        CaptionCenterAlignment = False
-        CanFocused = True
-        CustomDropDown = False
-        Margin = -1
-        Spacing = 1
-        Layout = blGlyphLeft
-        ImageIndex = -1
-        ImageMargin = 0
-        TransparentBackground = True
-        ColorOptions.NormalColor = clBtnFace
-        ColorOptions.HotColor = clBtnFace
-        ColorOptions.PressedColor = clBtnShadow
-        ColorOptions.FocusedColor = clBtnFace
-        ColorOptions.DisabledColor = clBtnFace
-        ColorOptions.FrameNormalColor = clBtnShadow
-        ColorOptions.FrameHotColor = clHighlight
-        ColorOptions.FramePressedColor = clHighlight
-        ColorOptions.FrameFocusedColor = clHighlight
-        ColorOptions.FrameDisabledColor = clBtnShadow
-        ColorOptions.FrameWidth = 1
-        ColorOptions.FontNormalColor = clBtnText
-        ColorOptions.FontHotColor = clBtnText
-        ColorOptions.FontPressedColor = clBtnText
-        ColorOptions.FontFocusedColor = clBtnText
-        ColorOptions.FontDisabledColor = clBtnShadow
-        ColorOptions.TitleFontNormalColor = clBtnText
-        ColorOptions.TitleFontHotColor = clBtnText
-        ColorOptions.TitleFontPressedColor = clBtnText
-        ColorOptions.TitleFontFocusedColor = clBtnText
-        ColorOptions.TitleFontDisabledColor = clBtnShadow
-        ColorOptions.StyleColors = True
-        TitleFont.Charset = DEFAULT_CHARSET
-        TitleFont.Color = clWindowText
-        TitleFont.Height = -12
-        TitleFont.Name = 'Segoe UI'
-        TitleFont.Style = [fsBold]
-        ToggleMode = False
-        HotImageIndex = -1
-        FocusedImageIndex = -1
-        PressedImageIndex = -1
-        StyleKind = scbsPushButton
-        UseGalleryMenuImage = False
-        UseGalleryMenuCaption = False
-        CustomImageNormalIndex = -1
-        CustomImageHotIndex = -1
-        CustomImagePressedIndex = -1
-        CustomImageDisabledIndex = -1
-        CustomImageFocusedIndex = -1
-        ScaleMarginAndSpacing = False
-        WidthWithCaption = 0
-        WidthWithoutCaption = 0
-        UseFontColorToStyleColor = False
-        RepeatClick = False
-        RepeatClickInterval = 100
-        GlowEffect.Enabled = False
-        GlowEffect.Color = clHighlight
-        GlowEffect.AlphaValue = 255
-        GlowEffect.GlowSize = 7
-        GlowEffect.Offset = 0
-        GlowEffect.Intensive = True
-        GlowEffect.StyleColors = True
-        GlowEffect.HotColor = clNone
-        GlowEffect.PressedColor = clNone
-        GlowEffect.FocusedColor = clNone
-        GlowEffect.PressedGlowSize = 7
-        GlowEffect.PressedAlphaValue = 255
-        GlowEffect.States = [scsHot, scsPressed, scsFocused]
-        ImageGlow = True
-        ShowGalleryMenuFromTop = False
-        ShowGalleryMenuFromRight = False
-        ShowMenuArrow = True
-        SplitButton = False
-        ShowFocusRect = True
-        Down = False
-        GroupIndex = 0
-        AllowAllUp = False
-      end
-      object tscGpbxFromSpeed: TscGroupBox
-        Left = 15
-        Top = 16
-        Width = 150
-        Height = 100
-        FluentUIOpaque = False
-        TabOrder = 1
-        FramePosition = scgfpDefault
-        CustomImageIndex = -1
-        CustomImageDisabledIndex = -1
-        CustomCheckedImageIndex = -1
-        CustomCheckedImageHotIndex = -1
-        CustomCheckedImagePressedIndex = -1
-        CustomCheckedImageDisabledIndex = -1
-        CustomUnCheckedImageIndex = -1
-        CustomUnCheckedImageHotIndex = -1
-        CustomUnCheckedImagePressedIndex = -1
-        CustomUnCheckedImageDisabledIndex = -1
-        Alignment = taLeftJustify
-        Caption = 'From'
-        ImageIndex = -1
-        ShowCheckBox = False
-        Checked = False
-        AutoEnabledControls = False
-        GlowEffect.Enabled = False
-        GlowEffect.Color = clHighlight
-        GlowEffect.AlphaValue = 255
-        GlowEffect.GlowSize = 7
-        GlowEffect.Offset = 0
-        GlowEffect.Intensive = True
-        GlowEffect.StyleColors = True
-        ImageGlow = True
-        StorePaintBuffer = True
-        object scCbxSpeedFromOption: TscComboBox
-          Left = 16
-          Top = 61
-          Width = 121
-          Height = 22
-          FluentUIOpaque = False
-          ItemIndex = -1
-          WordBreak = False
-          SelectionStyle = scstStyled
-          SelectionColor = clNone
-          SelectionTextColor = clHighlightText
-          ImageIndex = -1
-          ItemHeight = 16
-          TabOrder = 0
-          Text = 'Select'
-          StyleKind = scscbDefault
-          ShowFocusRect = True
-        end
-        object scSpeedFromValue: TscEdit
-          Left = 16
-          Top = 32
-          Width = 121
-          Height = 23
-          FluentUIOpaque = False
-          UseFontColorToStyleColor = False
-          ContentMarginLeft = 0
-          ContentMarginRight = 0
-          ContentMarginTop = 0
-          ContentMarginBottom = 0
-          CustomBackgroundImageNormalIndex = -1
-          CustomBackgroundImageHotIndex = -1
-          CustomBackgroundImageDisabledIndex = -1
-          PromptTextColor = clNone
-          HideMaskWithEmptyText = False
-          HidePromptTextIfFocused = False
-          WallpaperIndex = -1
-          LeftButton.ComboButton = False
-          LeftButton.Enabled = True
-          LeftButton.Visible = False
-          LeftButton.ShowHint = False
-          LeftButton.ShowEllipses = False
-          LeftButton.StyleKind = scbsPushButton
-          LeftButton.Width = 18
-          LeftButton.ImageIndex = -1
-          LeftButton.ImageHotIndex = -1
-          LeftButton.ImagePressedIndex = -1
-          LeftButton.RepeatClick = False
-          LeftButton.RepeatClickInterval = 200
-          LeftButton.CustomImageNormalIndex = -1
-          LeftButton.CustomImageHotIndex = -1
-          LeftButton.CustomImagePressedIndex = -1
-          LeftButton.CustomImageDisabledIndex = -1
-          RightButton.ComboButton = False
-          RightButton.Enabled = True
-          RightButton.Visible = False
-          RightButton.ShowHint = False
-          RightButton.ShowEllipses = False
-          RightButton.StyleKind = scbsPushButton
-          RightButton.Width = 18
-          RightButton.ImageIndex = -1
-          RightButton.ImageHotIndex = -1
-          RightButton.ImagePressedIndex = -1
-          RightButton.RepeatClick = False
-          RightButton.RepeatClickInterval = 200
-          RightButton.CustomImageNormalIndex = -1
-          RightButton.CustomImageHotIndex = -1
-          RightButton.CustomImagePressedIndex = -1
-          RightButton.CustomImageDisabledIndex = -1
-          Transparent = False
-          BorderKind = scebFrame
-          CustomDraw = False
-          FrameColor = clBtnShadow
-          FrameActiveColor = clHighlight
-          Text = ''
-          TabOrder = 1
-        end
-      end
-      object tscGpbxToSpeed: TscGroupBox
-        Left = 192
-        Top = 16
-        Width = 150
-        Height = 100
-        FluentUIOpaque = False
-        TabOrder = 2
-        FramePosition = scgfpDefault
-        CustomImageIndex = -1
-        CustomImageDisabledIndex = -1
-        CustomCheckedImageIndex = -1
-        CustomCheckedImageHotIndex = -1
-        CustomCheckedImagePressedIndex = -1
-        CustomCheckedImageDisabledIndex = -1
-        CustomUnCheckedImageIndex = -1
-        CustomUnCheckedImageHotIndex = -1
-        CustomUnCheckedImagePressedIndex = -1
-        CustomUnCheckedImageDisabledIndex = -1
-        Alignment = taLeftJustify
-        Caption = 'To'
-        ImageIndex = -1
-        ShowCheckBox = False
-        Checked = False
-        AutoEnabledControls = False
-        GlowEffect.Enabled = False
-        GlowEffect.Color = clHighlight
-        GlowEffect.AlphaValue = 255
-        GlowEffect.GlowSize = 7
-        GlowEffect.Offset = 0
-        GlowEffect.Intensive = True
-        GlowEffect.StyleColors = True
-        ImageGlow = True
-        StorePaintBuffer = True
-        object scCbxSpeedToOption: TscComboBox
-          Left = 17
-          Top = 61
-          Width = 122
-          Height = 22
-          FluentUIOpaque = False
-          ItemIndex = -1
-          WordBreak = False
-          SelectionStyle = scstStyled
-          SelectionColor = clNone
-          SelectionTextColor = clHighlightText
-          ImageIndex = -1
-          ItemHeight = 16
-          TabOrder = 0
-          Text = 'Select'
-          StyleKind = scscbDefault
-          ShowFocusRect = True
-        end
-        object scSpeedToValue: TscEdit
-          Left = 18
-          Top = 32
-          Width = 121
-          Height = 23
-          FluentUIOpaque = False
-          UseFontColorToStyleColor = False
-          ContentMarginLeft = 0
-          ContentMarginRight = 0
-          ContentMarginTop = 0
-          ContentMarginBottom = 0
-          CustomBackgroundImageNormalIndex = -1
-          CustomBackgroundImageHotIndex = -1
-          CustomBackgroundImageDisabledIndex = -1
-          PromptTextColor = clNone
-          HideMaskWithEmptyText = False
-          HidePromptTextIfFocused = False
-          WallpaperIndex = -1
-          LeftButton.ComboButton = False
-          LeftButton.Enabled = True
-          LeftButton.Visible = False
-          LeftButton.ShowHint = False
-          LeftButton.ShowEllipses = False
-          LeftButton.StyleKind = scbsPushButton
-          LeftButton.Width = 18
-          LeftButton.ImageIndex = -1
-          LeftButton.ImageHotIndex = -1
-          LeftButton.ImagePressedIndex = -1
-          LeftButton.RepeatClick = False
-          LeftButton.RepeatClickInterval = 200
-          LeftButton.CustomImageNormalIndex = -1
-          LeftButton.CustomImageHotIndex = -1
-          LeftButton.CustomImagePressedIndex = -1
-          LeftButton.CustomImageDisabledIndex = -1
-          RightButton.ComboButton = False
-          RightButton.Enabled = True
-          RightButton.Visible = False
-          RightButton.ShowHint = False
-          RightButton.ShowEllipses = False
-          RightButton.StyleKind = scbsPushButton
-          RightButton.Width = 18
-          RightButton.ImageIndex = -1
-          RightButton.ImageHotIndex = -1
-          RightButton.ImagePressedIndex = -1
-          RightButton.RepeatClick = False
-          RightButton.RepeatClickInterval = 200
-          RightButton.CustomImageNormalIndex = -1
-          RightButton.CustomImageHotIndex = -1
-          RightButton.CustomImagePressedIndex = -1
-          RightButton.CustomImageDisabledIndex = -1
-          Transparent = False
-          BorderKind = scebFrame
-          CustomDraw = False
-          FrameColor = clBtnShadow
-          FrameActiveColor = clHighlight
-          Text = ''
-          ImeName = 'Portuguese (Brazilian ABNT)'
-          ReadOnly = True
-          TabOrder = 1
-        end
-      end
-    end
     object scTabMetric: TscTabSheet
       Caption = 'Metric'
-      Enabled = False
       StyleKind = sctsTabSheet
       WallpaperIndex = -1
       CustomBackgroundImageIndex = -1
@@ -1003,6 +681,7 @@ object FrmMain: TFrmMain
         FluentUIOpaque = False
         TabOrder = 0
         TabStop = True
+        OnClick = btnConvertMetricClick
         Animation = False
         Caption = 'Convert'
         CaptionCenterAlignment = False
@@ -1115,7 +794,7 @@ object FrmMain: TFrmMain
         GlowEffect.StyleColors = True
         ImageGlow = True
         StorePaintBuffer = True
-        object scCbxFromOption: TscComboBox
+        object scCbxMetricFromOption: TscComboBox
           Left = 16
           Top = 61
           Width = 121
@@ -1189,7 +868,6 @@ object FrmMain: TFrmMain
           FrameColor = clBtnShadow
           FrameActiveColor = clHighlight
           Text = ''
-          Enabled = False
           TabOrder = 1
         end
       end
@@ -1226,7 +904,7 @@ object FrmMain: TFrmMain
         GlowEffect.StyleColors = True
         ImageGlow = True
         StorePaintBuffer = True
-        object scCbxToOption: TscComboBox
+        object scCbxMetricToOption: TscComboBox
           Left = 17
           Top = 61
           Width = 122
