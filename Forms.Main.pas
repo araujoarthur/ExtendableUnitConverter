@@ -5,7 +5,16 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, scStyledForm, scGPControls, scControls,
-  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, Converter.Types.Time, Converter.Types.Metric, Generics.Collections, Converter.Types.Generics, Converter.Interfaces.ConvertOption, Converter.Interfaces.CorrespondencyTable, Converter.Interfaces.Converter;
+  Vcl.ComCtrls,
+  Vcl.StdCtrls,
+  Vcl.Mask,
+  Converter.Types.Time,
+  Converter.Types.Metric,
+  Generics.Collections,
+  Converter.Types.Generics,
+  Converter.Interfaces.ConvertOption,
+  Converter.Interfaces.CorrespondencyTable,
+  Converter.Interfaces.Converter;
 
 type
   TFrmMain = class(TForm)

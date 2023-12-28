@@ -4,7 +4,7 @@ interface
 
 uses
   Converter.Interfaces.Converter,
-  Converte.Interfaces.ConvertOption,
+  Converter.Interfaces.ConvertOption,
   Converter.Interfaces.CorrespondencyTable,
   Generics.Collections,
   System.SysUtils;
