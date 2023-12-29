@@ -9,7 +9,9 @@ uses
   Converter.Types.Metric in 'Converter.Types.Metric.pas',
   Converter.Types.Time.Legacy in 'Converter.Types.Time.Legacy.pas',
   Converter.Types.Time in 'Converter.Types.Time.pas',
-  Forms.Main in 'Forms.Main.pas' {FrmMain};
+  Forms.Main in 'Forms.Main.pas' {FrmMain},
+  Converter.Interfaces.CustomConverter in 'Converter.Interfaces.CustomConverter.pas',
+  Converter.Types.CustomConverter in 'Converter.Types.CustomConverter.pas';
 
 {$R *.res}
 

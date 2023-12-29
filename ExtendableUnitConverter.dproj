@@ -133,6 +133,8 @@
             <Form>FrmMain</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Converter.Interfaces.CustomConverter.pas"/>
+        <DCCReference Include="Converter.Types.CustomConverter.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
