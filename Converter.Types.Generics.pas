@@ -19,6 +19,7 @@ type
     constructor Create(AOption: string; AValue: Double);
     function GetValue: Double;
     function GetName: string;
+    function GetInverse: Double;
 
     property Value: Double read GetValue;
     property Name: string read GetName;
@@ -36,29 +37,33 @@ type
 
   TConverter = class(TInterfacedObject, IConverter)
   protected
-    FBases: TDictionary<string, TCorrespondencyTable>;
+    FBases: TDictionary<string, ICorrespondencyTable>;
     function GetCorrespondingBase(AOption: string): ICorrespondencyTable;
   public
     constructor Create; virtual; abstract;
-    property Bases: TDictionary<string, TCorrespondencyTable> read FBases;
-    function Convert(AFromVal: Double; AFromOptionName:string; AToOptionTable: ICorrespondencyTable): Double; virtual;
+    function Bases: TDictionary<string, ICorrespondencyTable>;
+    function Convert(AFromVal: Double; AFromOptionName:string; AFromOptionTable: ICorrespondencyTable): Double; virtual;
   end;
 implementation
 
 
 { TConverter }
 
-function TConverter.Convert(AFromVal: Double; AFromOptionName:string;
-AToOptionTable: ICorrespondencyTable): Double;
+function TConverter.Bases: TDictionary<string, ICorrespondencyTable>;
+begin
+  Result := FBases;
+end;
+
+function TConverter.Convert(AFromVal: Double; AFromOptionName:string; AFromOptionTable: ICorrespondencyTable): Double;
 
 begin
-  Result := AFromVal * AToOptionTable.GetCorrespondingOption(AFromOptionName).Value;
+  Result := AFromVal * AFromOptionTable.GetCorrespondingOption(AFromOptionName).Value;
 end;
 
 function TConverter.GetCorrespondingBase(
   AOption: string): ICorrespondencyTable;
 var
-  CorrespondingBase: TCorrespondencyTable;
+  CorrespondingBase: ICorrespondencyTable;
 begin
   if FBases.TryGetValue(AOption, CorrespondingBase)  then
   begin
@@ -107,6 +112,11 @@ constructor TConvertOption.Create(AOption: String; AValue: Double);
 begin
   FOptionName := AOption;
   FOptionValue := AValue;
+end;
+
+function TConvertOption.GetInverse: Double;
+begin
+  Result := 1/FOptionValue;
 end;
 
 function TConvertOption.GetName: string;

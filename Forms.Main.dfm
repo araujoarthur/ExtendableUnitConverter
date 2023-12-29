@@ -3,7 +3,7 @@ object FrmMain: TFrmMain
   Top = 0
   BorderStyle = bsNone
   Caption = 'FrmMain'
-  ClientHeight = 222
+  ClientHeight = 311
   ClientWidth = 370
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -320,7 +320,7 @@ object FrmMain: TFrmMain
     Top = 30
     Width = 370
     Height = 192
-    ActivePage = scTabTime
+    ActivePage = scTabExtended
     Align = alClient
     TabOrder = 1
     TabGlowEffect.Enabled = False
@@ -350,6 +350,7 @@ object FrmMain: TFrmMain
     TabSpacing = 1
     FreeOnClose = False
     ShowCloseButtons = False
+    ExplicitTop = 24
     object scTabTime: TscTabSheet
       Caption = 'Time'
       StyleKind = sctsTabSheet
@@ -358,9 +359,10 @@ object FrmMain: TFrmMain
       DrawTabsWallpaper = False
       object scbtnConvertTime: TscButton
         Left = 128
-        Top = 122
+        Top = 119
         Width = 100
         Height = 35
+        Enabled = False
         FluentUIOpaque = False
         TabOrder = 0
         TabStop = True
@@ -494,6 +496,7 @@ object FrmMain: TFrmMain
           Text = 'Select'
           StyleKind = scscbDefault
           ShowFocusRect = True
+          OnChange = SwitchTimeButton
         end
         object scTimeFromValue: TscEdit
           Left = 16
@@ -552,6 +555,7 @@ object FrmMain: TFrmMain
           FrameActiveColor = clHighlight
           Text = ''
           TabOrder = 1
+          OnChange = SwitchTimeButton
         end
       end
       object tscGpbxToTime: TscGroupBox
@@ -604,6 +608,7 @@ object FrmMain: TFrmMain
           Text = 'Select'
           StyleKind = scscbDefault
           ShowFocusRect = True
+          OnChange = SwitchTimeButton
         end
         object scTimeToValue: TscEdit
           Left = 18
@@ -678,6 +683,7 @@ object FrmMain: TFrmMain
         Top = 119
         Width = 100
         Height = 35
+        Enabled = False
         FluentUIOpaque = False
         TabOrder = 0
         TabStop = True
@@ -811,6 +817,7 @@ object FrmMain: TFrmMain
           Text = 'Select'
           StyleKind = scscbDefault
           ShowFocusRect = True
+          OnChange = SwitchMetricButton
         end
         object scMetricFromValue: TscEdit
           Left = 16
@@ -869,6 +876,7 @@ object FrmMain: TFrmMain
           FrameActiveColor = clHighlight
           Text = ''
           TabOrder = 1
+          OnChange = SwitchMetricButton
         end
       end
       object tscGpbxToMetric: TscGroupBox
@@ -921,6 +929,7 @@ object FrmMain: TFrmMain
           Text = 'Select'
           StyleKind = scscbDefault
           ShowFocusRect = True
+          OnChange = SwitchMetricButton
         end
         object scMetricToValue: TscEdit
           Left = 18
@@ -998,6 +1007,7 @@ object FrmMain: TFrmMain
         FluentUIOpaque = False
         TabOrder = 0
         TabStop = True
+        OnClick = btnCustomConvertClick
         Animation = False
         Caption = 'Convert'
         CaptionCenterAlignment = False
@@ -1264,22 +1274,15 @@ object FrmMain: TFrmMain
           TabOrder = 0
         end
       end
-      object scCbxCustomConvert: TComboBox
-        Left = 15
-        Top = 90
-        Width = 327
-        Height = 23
-        TabOrder = 3
-        Text = 'scCbxCustomConvert'
-      end
       object btnAddConverter: TscButton
         Left = 268
         Top = 119
         Width = 74
         Height = 21
         FluentUIOpaque = False
-        TabOrder = 4
+        TabOrder = 3
         TabStop = True
+        OnClick = btnAddConverterClick
         Animation = False
         Caption = 'Add Custom'
         CaptionCenterAlignment = False
@@ -1360,6 +1363,32 @@ object FrmMain: TFrmMain
         AllowAllUp = False
       end
     end
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 222
+    Width = 370
+    Height = 89
+    Align = alBottom
+    TabOrder = 2
+  end
+  object scCbxCustomConvert: TscComboBox
+    Left = 19
+    Top = 147
+    Width = 327
+    Height = 22
+    FluentUIOpaque = False
+    ItemIndex = -1
+    WordBreak = False
+    SelectionStyle = scstStyled
+    SelectionColor = clNone
+    SelectionTextColor = clHighlightText
+    ImageIndex = -1
+    ItemHeight = 16
+    TabOrder = 3
+    Text = 'Select'
+    StyleKind = scscbDefault
+    ShowFocusRect = True
   end
   object scStyledForm1: TscStyledForm
     FluentUIBackground = scfuibNone

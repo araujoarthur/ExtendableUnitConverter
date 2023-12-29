@@ -5,6 +5,7 @@ uses
   Converter.Types.Generics,
   Converter.Interfaces.Converter,
   Converter.Interfaces.ConvertOption,
+  Converter.Interfaces.CorrespondencyTable,
   Generics.Collections,
   System.SysUtils;
 
@@ -31,7 +32,7 @@ var
   BaseMonth_Second, BaseMonth_Minute, BaseMonth_Hour, BaseMonth_Day, BaseMonth_Month, BaseMonth_Year: IConvertOption;
   BaseYear_Second, BaseYear_Minute, BaseYear_Hour, BaseYear_Day, BaseYear_Month, BaseYear_Year: IConvertOption;
 begin
-  FBases := TDictionary<string, TCorrespondencyTable>.Create;
+  FBases := TDictionary<string, ICorrespondencyTable>.Create;
 
   { Base Second }
 
@@ -103,12 +104,12 @@ begin
 
   { Base Month }
 
-  BaseMonth_Second := TConvertOption.Create('Second', 1/(60*60*24*365));
-  BaseMonth_Minute := TConvertOption.Create('Minute', 1/(60*24*365));
-  BaseMonth_Hour := TConvertOption.Create('Hour', 1/(24*365));
-  BaseMonth_Day  := TConvertOption.Create('Day', 1/365);
-  BaseMonth_Month := TConvertOption.Create('Month', 1/12);
-  BaseMonth_Year  := TConvertOption.Create('Year', 1);
+  BaseMonth_Second := TConvertOption.Create('Second', 1/(60*60*24*30));
+  BaseMonth_Minute := TConvertOption.Create('Minute', 1/(60*24*30));
+  BaseMonth_Hour := TConvertOption.Create('Hour', 1/(24*30));
+  BaseMonth_Day  := TConvertOption.Create('Day', 1/30);
+  BaseMonth_Month := TConvertOption.Create('Month', 1);
+  BaseMonth_Year  := TConvertOption.Create('Year', 12);
 
   FBaseMonth := TCorrespondencyTable.Create;
   FBaseMonth.AddToTable(BaseMonth_Second);
@@ -119,12 +120,12 @@ begin
   FBaseMonth.AddToTable(BaseMonth_Year);
   { Base Year }
 
-  BaseYear_Second := TConvertOption.Create('Second', 1);
-  BaseYear_Minute := TConvertOption.Create('Minute', 60);
-  BaseYear_Hour := TConvertOption.Create('Hour', 60*60);
-  BaseYear_Day  := TConvertOption.Create('Day', 60*60*24);
-  BaseYear_Month := TConvertOption.Create('Month', 60*60*24*30);
-  BaseYear_Year  := TConvertOption.Create('Year', 60*60*24*365);
+  BaseYear_Second := TConvertOption.Create('Second', BaseSecond_Year.GetInverse); // fix
+  BaseYear_Minute := TConvertOption.Create('Minute', BaseMinute_Year.GetInverse); // fix
+  BaseYear_Hour := TConvertOption.Create('Hour', BaseHour_Year.GetInverse); // fix
+  BaseYear_Day  := TConvertOption.Create('Day', BaseDay_Year.GetInverse);
+  BaseYear_Month := TConvertOption.Create('Month', BaseMonth_Year.GetInverse);
+  BaseYear_Year  := TConvertOption.Create('Year', 1);
 
   FBaseYear := TCorrespondencyTable.Create;
   FBaseYear.AddToTable(BaseYear_Second);

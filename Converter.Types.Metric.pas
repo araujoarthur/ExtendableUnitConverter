@@ -5,6 +5,7 @@ interface
 uses
   Converter.Types.Generics,
   Converter.Interfaces.ConvertOption,
+  Converter.Interfaces.CorrespondencyTable,
   Generics.Collections,
   System.SysUtils;
 
@@ -12,7 +13,7 @@ type
 
   TMetricConverter = class(TConverter)
   private
-    FBaseMilimeter, FBaseCentimeter, FBaseMeter, FBaseKilometer: TCorrespondencyTable;
+    FBaseMilimeter, FBaseCentimeter, FBaseMeter, FBaseKilometer: ICorrespondencyTable;
   public
     constructor Create;
     destructor Destroy;
@@ -32,7 +33,7 @@ var
   BaseKilometer_Milimeter, BaseKilometer_Centimeter, BaseKilometer_Meter, BaseKilometer_Kilometer: IConvertOption;
 begin
 
-  FBases := TDictionary<string, TCorrespondencyTable>.Create;
+  FBases := TDictionary<string, ICorrespondencyTable>.Create;
 
   { Base Milimeter }
   BaseMilimeter_Milimeter := TConvertOption.Create('Milimeter', 1);
