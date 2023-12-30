@@ -2,8 +2,8 @@ object FrmMain: TFrmMain
   Left = 0
   Top = 0
   BorderStyle = bsNone
-  Caption = 'FrmMain'
-  ClientHeight = 311
+  Caption = 'Extendable Unit Converter'
+  ClientHeight = 218
   ClientWidth = 370
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -319,7 +319,7 @@ object FrmMain: TFrmMain
     Left = 0
     Top = 30
     Width = 370
-    Height = 192
+    Height = 188
     ActivePage = scTabExtended
     Align = alClient
     TabOrder = 1
@@ -1361,33 +1361,25 @@ object FrmMain: TFrmMain
         GroupIndex = 0
         AllowAllUp = False
       end
+      object scCbxCustomConvert: TscComboBox
+        Left = 15
+        Top = 88
+        Width = 327
+        Height = 22
+        FluentUIOpaque = False
+        ItemIndex = -1
+        WordBreak = False
+        SelectionStyle = scstStyled
+        SelectionColor = clNone
+        SelectionTextColor = clHighlightText
+        ImageIndex = -1
+        ItemHeight = 16
+        TabOrder = 4
+        Text = 'Select'
+        StyleKind = scscbDefault
+        ShowFocusRect = True
+      end
     end
-  end
-  object Memo1: TMemo
-    Left = 0
-    Top = 222
-    Width = 370
-    Height = 89
-    Align = alBottom
-    TabOrder = 2
-  end
-  object scCbxCustomConvert: TscComboBox
-    Left = 19
-    Top = 147
-    Width = 327
-    Height = 22
-    FluentUIOpaque = False
-    ItemIndex = -1
-    WordBreak = False
-    SelectionStyle = scstStyled
-    SelectionColor = clNone
-    SelectionTextColor = clHighlightText
-    ImageIndex = -1
-    ItemHeight = 16
-    TabOrder = 3
-    Text = 'Select'
-    StyleKind = scscbDefault
-    ShowFocusRect = True
   end
   object scStyledForm1: TscStyledForm
     FluentUIBackground = scfuibNone

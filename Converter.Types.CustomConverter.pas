@@ -4,7 +4,6 @@ interface
 
 uses
   PythonEngine,
-  PythonVersions,
   Converter.Interfaces.CustomConverter,
   SysUtils,
   Forms,
@@ -15,7 +14,7 @@ type
   private
     FPythonEngine: TPythonEngine;
     FConverterPath: string;
-    FAppPath: string;
+    FConvertersPath: string;
     FConverterName: string;
     function GetConverterName: string;
     function GetPythonVersionCst: string;
@@ -36,15 +35,53 @@ implementation
 { TCustomConverter }
 
 function TCustomConverter.Convert(AFromValue: Double): Double;
+var
+  PythonModule, PythonArguments, PythonResult: PPyObject;
+  PythonFunctionDoConversion: TPythonDelphiVar;
+  ConverterModule: TPythonModule;
 begin
+  try
+   { FPythonEngine.ExecString(Format('import sys; sys.path.append(r"%s")', [FConvertersPath]));
+    FPythonEngine.ExecString('import ' + FConverterName);
 
+    PythonModule := FPythonEngine.PyImport_ImportModule  }
+    ConverterModule := TPythonModule.Create(nil);
+    
+    try
+      ConverterModule.ModuleName := FConverterName;
+      ConverterModule.Engine := FPythonEngine;
+      try
+        FPythonEngine.ExecString('import sys');
+        FPythonEngine.ExecString('sys.path.appedn("./converters")');
+        FPythonEngine.ExecString('import ' + FConverterName);
+        PythonFunctionDoConversion := TPythonDelphiVar.Create(nil);
+        try
+          try
+            PythonFunctionDoConversion.Engine := FPythonEngine;
+            
+          except on E: Exception do
+            raise Exception.Create('Error Creating PythonDelphiVar');
+          end;
+        finally
+          PythonFunctionDoConversion.Free;
+        end;
+      except on E: Exception do
+        raise Exception.Create('Error on importing');
+      end;
+    finally
+      ConverterModule.Free;
+    end;
+    
+  except on E: Exception do
+    raise Exception.Create(E.Message);
+  end;
 end;
 
 constructor TCustomConverter.Create(AFromValue: Double; AConverterName: string);
 begin
   SetupPythonEngine;
-  FConverterName := ExtractFilePath(Application.ExeName) + IncludeTrailingPathDelimiter(CONVERTER_FOLDER_NAME);
-  ShowMessage(FConverterName);
+  FConvertersPath := ExtractFilePath(Application.ExeName) + IncludeTrailingPathDelimiter(CONVERTER_FOLDER_NAME);
+  FConverterName := AConverterName;
 end;
 
 destructor TCustomConverter.Destroy;

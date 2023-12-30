@@ -135,6 +135,7 @@
         </DCCReference>
         <DCCReference Include="Converter.Interfaces.CustomConverter.pas"/>
         <DCCReference Include="Converter.Types.CustomConverter.pas"/>
+        <DCCReference Include="Converter.Types.StringObject.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -11,7 +11,8 @@ uses
   Converter.Types.Time in 'Converter.Types.Time.pas',
   Forms.Main in 'Forms.Main.pas' {FrmMain},
   Converter.Interfaces.CustomConverter in 'Converter.Interfaces.CustomConverter.pas',
-  Converter.Types.CustomConverter in 'Converter.Types.CustomConverter.pas';
+  Converter.Types.CustomConverter in 'Converter.Types.CustomConverter.pas',
+  Converter.Types.StringObject in 'Converter.Types.StringObject.pas';
 
 {$R *.res}
 
