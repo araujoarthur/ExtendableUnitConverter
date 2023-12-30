@@ -19,6 +19,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.Title := 'Extendable Unit Converter';
   Application.CreateForm(TFrmMain, FrmMain);
   Application.CreateForm(TFrmMain, FrmMain);
   Application.Run;
