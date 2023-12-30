@@ -16,14 +16,15 @@ type
     FPythonEngine: TPythonEngine;
     FConverterPath: string;
     FAppPath: string;
-    function GetConverterPath: string;
+    FConverterName: string;
+    function GetConverterName: string;
     function GetPythonVersionCst: string;
     procedure SetupPythonEngine;
   public
-    constructor Create(AFromValue: Double; AConverterPath: string);
+    constructor Create(AFromValue: Double; AConverterName: string);
     destructor Destroy; override;
     function Convert(AFromValue: Double): Double;
-    property ConverterPath: string read GetConverterPath;
+    property ConverterName: string read GetConverterName;
     property PythonVersion: string read GetPythonVersionCst;
   end;
 
@@ -39,11 +40,11 @@ begin
 
 end;
 
-constructor TCustomConverter.Create(AFromValue: Double; AConverterPath: string);
+constructor TCustomConverter.Create(AFromValue: Double; AConverterName: string);
 begin
   SetupPythonEngine;
-  FAppPath := ExtractFilePath(Application.ExeName) + IncludeTrailingPathDelimiter(CONVERTER_FOLDER_NAME);
-  ShowMessage(FAppPath);
+  FConverterName := ExtractFilePath(Application.ExeName) + IncludeTrailingPathDelimiter(CONVERTER_FOLDER_NAME);
+  ShowMessage(FConverterName);
 end;
 
 destructor TCustomConverter.Destroy;
@@ -56,9 +57,9 @@ begin
   inherited;
 end;
 
-function TCustomConverter.GetConverterPath: string;
+function TCustomConverter.GetConverterName: string;
 begin
-  Result := FConverterPath;
+  Result := FConverterName;
 end;
 
 function TCustomConverter.GetPythonVersionCst: string;

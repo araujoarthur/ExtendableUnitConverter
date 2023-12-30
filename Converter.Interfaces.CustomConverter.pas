@@ -4,7 +4,7 @@ interface
 
 type
   ICustomConverter = interface
-    function GetConverterPath: string;
+    function GetConverterName: string;
     function GetPythonVersionCst: string;
     function Convert(AFromValue: Double): Double;
     property ConverterPath: string read GetConverterPath;

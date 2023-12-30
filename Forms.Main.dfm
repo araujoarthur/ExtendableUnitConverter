@@ -350,7 +350,6 @@ object FrmMain: TFrmMain
     TabSpacing = 1
     FreeOnClose = False
     ShowCloseButtons = False
-    ExplicitTop = 24
     object scTabTime: TscTabSheet
       Caption = 'Time'
       StyleKind = sctsTabSheet

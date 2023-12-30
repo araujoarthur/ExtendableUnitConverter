@@ -123,7 +123,7 @@ begin
   AppPath := ExtractFilePath(Application.ExeName);
   FileName := AppPath + LIST_FILE_NAME;
   CustomListFile := TIniFile.Create(FileName);
-  CustomListFile.WriteString('LIST', 'CUSTOM_CONVERTER_EXAMPLE', 'converters/custom_converter_example.py');
+  CustomListFile.WriteString('LIST', 'CUSTOM_CONVERTER_EXAMPLE', 'custom_converter_example.py');
 end;
 
 function TFrmMain.ExtractObjectFromCbxSelected(ACbx: TCustomComboBox): TObject;
